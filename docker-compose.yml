@@ -37,7 +37,7 @@ services:
     environment:
       - TZ=Asia/Jerusalem
     devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
+      - /dev/ttyACM0:/dev/ttyACM0
     restart: unless-stopped
     depends_on:
       - mosquitto
