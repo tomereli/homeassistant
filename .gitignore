@@ -1,0 +1,33 @@
+# Secrets - NEVER commit
+secrets.yaml
+
+# Nabu Casa cloud credentials
+.cloud/
+
+# Database and logs
+*.db
+*.db-shm
+*.db-wal
+*.log
+home-assistant.log*
+
+# Runtime state
+.storage/
+.HA_VERSION
+
+# SSH keys (we'll add these later)
+.ssh/
+
+# Cache and temp
+__pycache__/
+*.pyc
+tts/
+.uuid
+
+# Zigbee state (if using ZHA)
+zigbee.db*
+
+# Custom components (optional - uncomment if you want to track them)
+# custom_components/
+config/.ha_run.lock
+config/image/

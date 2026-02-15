@@ -12,4 +12,4 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: host
-
+    command: /bin/bash -c "apk add --no-cache git openssh && /init"
