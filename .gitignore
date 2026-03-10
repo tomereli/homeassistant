@@ -31,3 +31,4 @@ zigbee.db*
 # custom_components/
 config/.ha_run.lock
 config/image/
+# test
