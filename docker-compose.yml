@@ -13,3 +13,14 @@ services:
     privileged: true
     network_mode: host
     command: /bin/bash -c "apk add --no-cache git openssh && /init"
+
+  matter-server:
+      container_name: matter-server
+      image: ghcr.io/home-assistant-libs/python-matter-server:stable
+      restart: unless-stopped
+      network_mode: host
+      volumes:
+        - ./matter-server-data:/data
+      # Required for Bluetooth/Thread commissioning:
+      security_opt:
+        - apparmor=unconfined
