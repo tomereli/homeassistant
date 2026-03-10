@@ -12,20 +12,27 @@ fi
 # Get diff for AI commit message
 DIFF=$(git diff --cached --stat)
 
-# Call Gemini API for commit message
-API_KEY="REDACTED"
-PROMPT="Generate a concise git commit message (max 72 chars) for these changes. No quotes. Changes: $DIFF"
+# Read API key from HA config (already stored there)
+API_KEY=$(docker exec homeassistant cat /config/.storage/core.config_entries | python3 -c "
+import sys,json
+data = json.load(sys.stdin)
+for entry in data['data']['entries']:
+    if entry['domain'] == 'google_generative_ai_conversation':
+        print(entry['data']['api_key'])
+        break
+" 2>/dev/null)
 
-RESPONSE=$(curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$API_KEY" \
-  -H "Content-Type: application/json" \
-  -d "{\"contents\":[{\"parts\":[{\"text\":\"$PROMPT\"}]}]}" 2>/dev/null)
-
-# Extract message from response
-MESSAGE=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin)['candidates'][0]['content']['parts'][0]['text'].strip())" 2>/dev/null)
-
-# Fallback if AI fails
-if [ -z "$MESSAGE" ]; then
+if [ -z "$API_KEY" ]; then
     MESSAGE="Auto-backup parent repo"
+else
+    PROMPT="Generate a concise git commit message (max 72 chars) for these changes. No quotes. Changes: $DIFF"
+    RESPONSE=$(curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$API_KEY" \
+      -H "Content-Type: application/json" \
+      -d "{\"contents\":[{\"parts\":[{\"text\":\"$PROMPT\"}]}]}" 2>/dev/null)
+    MESSAGE=$(echo "$RESPONSE" | python3 -c "import sys,json; print(json.load(sys.stdin)['candidates'][0]['content']['parts'][0]['text'].strip())" 2>/dev/null)
+    if [ -z "$MESSAGE" ]; then
+        MESSAGE="Auto-backup parent repo"
+    fi
 fi
 
 git commit -m "$MESSAGE"
