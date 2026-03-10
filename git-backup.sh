@@ -10,7 +10,7 @@ if git diff --cached --quiet; then
 fi
 
 # Get diff for AI commit message
-DIFF=$(git diff --cached --stat)
+DIFF=$(git diff --cached)
 
 # Read API key from HA config (already stored there)
 API_KEY=$(docker exec homeassistant cat /config/.storage/core.config_entries | python3 -c "
