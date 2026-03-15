@@ -1,7 +1,7 @@
 services:
   homeassistant:
     container_name: homeassistant
-    image: ghcr.io/home-assistant/home-assistant:stable
+    image: ghcr.io/home-assistant/home-assistant:2026.2
     volumes:
       - ./config:/config
       - /etc/localtime:/etc/localtime:ro
@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
     privileged: true
     network_mode: host
-    command: /bin/bash -c "apk add --no-cache git openssh && /init"
+    command: /bin/bash -c "apk add --no-cache git openssh && git config --global --add safe.directory /config && /init"
 
   matter-server:
       container_name: matter-server
