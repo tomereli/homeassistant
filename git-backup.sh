@@ -1,8 +1,8 @@
 #!/bin/bash
 cd ~/homeassistant
 
-# Stage only parent repo files (not submodule)
-git add docker-compose.yml .gitignore git-backup.sh
+# Stage parent repo files + submodule pointer
+git add docker-compose.yml .gitignore git-backup.sh config
 
 # Check if there are changes
 if git diff --cached --quiet; then
