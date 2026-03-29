@@ -64,9 +64,6 @@
       "groups": {
         "-5225093180": {
           "requireMention": false
-        },
-        "*": {
-          "requireMention": true
         }
       },
       "groupPolicy": "allowlist",
