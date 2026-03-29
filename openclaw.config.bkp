@@ -1,4 +1,12 @@
 {
+  "meta": {
+    "lastTouchedVersion": "2026.3.28",
+    "lastTouchedAt": "2026-03-29T22:08:29.899Z"
+  },
+  "env": {
+    "HASS_SERVER": "http://127.0.0.1:8123",
+    "HASS_TOKEN": "eyJh***REDACTED***"
+  },
   "wizard": {
     "lastRunAt": "2026-03-28T21:14:56.968Z",
     "lastRunVersion": "2026.3.24",
@@ -16,16 +24,23 @@
   "agents": {
     "defaults": {
       "model": {
-        "primary": "google/gemini-2.5-pro",
+        "primary": "google/gemini-2.5-flash",
         "fallbacks": [
-          "google/gemini-2.5-flash"
+          "google/gemini-2.5-pro"
         ]
       },
       "models": {
         "google/gemini-3.1-pro-preview": {},
-        "google/gemini-2.5-pro": {}
+        "google/gemini-2.5-pro": {
+          "params": {
+            "thinkingConfig": {
+              "thinkingBudget": 8192
+            }
+          }
+        }
       },
-      "workspace": "/home/node/.openclaw/workspace"
+      "workspace": "/home/node/.openclaw/workspace",
+      "thinkingDefault": "low"
     }
   },
   "tools": {
@@ -45,6 +60,9 @@
   },
   "session": {
     "dmScope": "per-channel-peer"
+  },
+  "cron": {
+    "enabled": true
   },
   "hooks": {
     "internal": {
@@ -66,12 +84,12 @@
           "requireMention": false
         }
       },
-      "groupPolicy": "allowlist",
-      "streaming": "partial",
       "groupAllowFrom": [
         "6104279564",
         "6642889460"
       ],
+      "groupPolicy": "allowlist",
+      "streaming": "partial",
       "network": {
         "autoSelectFamily": false
       }
@@ -81,10 +99,17 @@
     "port": 18789,
     "mode": "local",
     "bind": "lan",
+    "controlUi": {
+      "dangerouslyAllowHostHeaderOriginFallback": true
+    },
     "auth": {
       "mode": "token",
       "token": "bc89***REDACTED***"
     },
+    "trustedProxies": [
+      "172.17.0.1",
+      "127.0.0.1"
+    ],
     "tailscale": {
       "mode": "off",
       "resetOnExit": false
@@ -99,32 +124,24 @@
         "reminders.add",
         "sms.send"
       ]
-    },
-    "controlUi": {
-      "dangerouslyAllowHostHeaderOriginFallback": true
-    },
-    "trustedProxies": [
-      "172.17.0.1",
-      "127.0.0.1"
-    ]
+    }
   },
   "skills": {
     "install": {
       "nodeManager": "npm"
+    },
+    "entries": {
+      "homeassistant-assist": {
+        "enabled": true
+      }
     }
   },
   "plugins": {
     "entries": {
       "duckduckgo": {
-        "enabled": true
+        "enabled": true,
+        "config": {}
       }
     }
-  },
-  "meta": {
-    "lastTouchedVersion": "2026.3.24",
-    "lastTouchedAt": "2026-03-28T21:14:57.005Z"
-  },
-  "cron": {
-    "enabled": true
   }
 }

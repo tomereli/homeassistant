@@ -3,7 +3,7 @@ cd ~/homeassistant
 python3 -c "
 import json
 
-REDACT_KEYS = {'bottoken', 'token', 'key', 'secret', 'password', 'apikey'}
+REDACT_KEYS = {'bottoken', 'token', 'key', 'secret', 'password', 'apikey', 'hasstoken'}
 
 redacted_values = []
 
