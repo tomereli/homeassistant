@@ -35,3 +35,10 @@ config/image/
 # OpenClaw (API keys, tokens, agent memory)
 openclaw-data/
 openclaw-workspace/
+
+# Matter server runtime data
+matter-server-data/
+
+# Tailscale TLS certificates
+*.crt
+*.key
