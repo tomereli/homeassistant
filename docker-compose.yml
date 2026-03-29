@@ -14,12 +14,56 @@ services:
     command: /bin/bash -c "apk add --no-cache git openssh && git config --global --add safe.directory /config && /init"
 
   matter-server:
-      container_name: matter-server
-      image: ghcr.io/home-assistant-libs/python-matter-server:stable
-      restart: unless-stopped
-      network_mode: host
-      volumes:
-        - ./matter-server-data:/data
-      # Required for Bluetooth/Thread commissioning:
-      security_opt:
-        - apparmor=unconfined
+    container_name: matter-server
+    image: ghcr.io/home-assistant-libs/python-matter-server:stable
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./matter-server-data:/data
+    security_opt:
+      - apparmor=unconfined
+
+  openclaw-gateway:
+    container_name: openclaw-gateway
+    image: ghcr.io/openclaw/openclaw:latest
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./openclaw-data:/home/node/.openclaw
+      - ./openclaw-workspace:/home/node/openclaw/workspace
+    environment:
+      - TZ=Asia/Jerusalem
+    init: true
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:18789/healthz').then((r)=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    command:
+      [
+        "node",
+        "dist/index.js",
+        "gateway",
+        "--bind",
+        "lan",
+        "--port",
+        "18789",
+      ]
+
+  openclaw-cli:
+    container_name: openclaw-cli
+    image: ghcr.io/openclaw/openclaw:latest
+    network_mode: "service:openclaw-gateway"
+    volumes:
+      - ./openclaw-data:/home/node/.openclaw
+      - ./openclaw-workspace:/home/node/openclaw/workspace
+    environment:
+      - TZ=Asia/Jerusalem
+    profiles:
+      - cli
+    cap_drop:
+      - NET_RAW
+      - NET_ADMIN
+    security_opt:
+      - no-new-privileges:true
+    entrypoint: ["node", "dist/index.js"]

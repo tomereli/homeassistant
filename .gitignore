@@ -31,3 +31,7 @@ zigbee.db*
 # custom_components/
 config/.ha_run.lock
 config/image/
+
+# OpenClaw (API keys, tokens, agent memory)
+openclaw-data/
+openclaw-workspace/
