@@ -67,3 +67,15 @@ services:
     security_opt:
       - no-new-privileges:true
     entrypoint: ["node", "dist/index.js"]
+
+  dashboard:
+    container_name: smarthome-dashboard
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "8444:80"
+    volumes:
+      - ./dashboard:/usr/share/nginx/html:ro
+      - ./dashboard/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./noobchim-desktop.tail548c12.ts.net.crt:/certs/noobchim-desktop.tail548c12.ts.net.crt:ro
+      - ./noobchim-desktop.tail548c12.ts.net.key:/certs/noobchim-desktop.tail548c12.ts.net.key:ro

@@ -42,3 +42,6 @@ matter-server-data/
 # Tailscale TLS certificates
 *.crt
 *.key
+
+# Dashboard auth
+dashboard/.htpasswd

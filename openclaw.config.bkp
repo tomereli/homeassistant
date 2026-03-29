@@ -1,0 +1,133 @@
+{
+  "wizard": {
+    "lastRunAt": "2026-03-28T21:14:56.968Z",
+    "lastRunVersion": "2026.3.24",
+    "lastRunCommand": "onboard",
+    "lastRunMode": "local"
+  },
+  "auth": {
+    "profiles": {
+      "google:default": {
+        "provider": "google",
+        "mode": "api_key"
+      }
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "google/gemini-2.5-pro",
+        "fallbacks": [
+          "google/gemini-2.5-flash"
+        ]
+      },
+      "models": {
+        "google/gemini-3.1-pro-preview": {},
+        "google/gemini-2.5-pro": {}
+      },
+      "workspace": "/home/node/.openclaw/workspace"
+    }
+  },
+  "tools": {
+    "profile": "full",
+    "web": {
+      "search": {
+        "enabled": true,
+        "provider": "duckduckgo"
+      }
+    }
+  },
+  "commands": {
+    "native": "auto",
+    "nativeSkills": "auto",
+    "restart": true,
+    "ownerDisplay": "raw"
+  },
+  "session": {
+    "dmScope": "per-channel-peer"
+  },
+  "hooks": {
+    "internal": {
+      "enabled": true,
+      "entries": {
+        "session-memory": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "botToken": "8710***REDACTED***",
+      "groups": {
+        "-5225093180": {
+          "requireMention": false
+        },
+        "*": {
+          "requireMention": true
+        }
+      },
+      "groupPolicy": "allowlist",
+      "streaming": "partial",
+      "groupAllowFrom": [
+        "6104279564",
+        "6642889460"
+      ],
+      "network": {
+        "autoSelectFamily": false
+      }
+    }
+  },
+  "gateway": {
+    "port": 18789,
+    "mode": "local",
+    "bind": "lan",
+    "auth": {
+      "mode": "token",
+      "token": "bc89***REDACTED***"
+    },
+    "tailscale": {
+      "mode": "off",
+      "resetOnExit": false
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap",
+        "camera.clip",
+        "screen.record",
+        "contacts.add",
+        "calendar.add",
+        "reminders.add",
+        "sms.send"
+      ]
+    },
+    "controlUi": {
+      "dangerouslyAllowHostHeaderOriginFallback": true
+    },
+    "trustedProxies": [
+      "172.17.0.1",
+      "127.0.0.1"
+    ]
+  },
+  "skills": {
+    "install": {
+      "nodeManager": "npm"
+    }
+  },
+  "plugins": {
+    "entries": {
+      "duckduckgo": {
+        "enabled": true
+      }
+    }
+  },
+  "meta": {
+    "lastTouchedVersion": "2026.3.24",
+    "lastTouchedAt": "2026-03-28T21:14:57.005Z"
+  },
+  "cron": {
+    "enabled": true
+  }
+}
