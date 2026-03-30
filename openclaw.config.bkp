@@ -102,11 +102,19 @@
       "enabled": true,
       "dmPolicy": "allowlist",
       "allowFrom": [
-        "+972506999740",
-        "+972547876649",
-        "+972544422521"
+        "+972506999740"
       ],
-      "selfChatMode": true
+      "selfChatMode": true,
+      "groupPolicy": "allowlist",
+      "groupAllowFrom": [
+        "+972506999740",
+        "+972547876649"
+      ],
+      "groups": {
+        "120363423327214814@g.us": {
+          "requireMention": false
+        }
+      }
     }
   },
   "gateway": {
