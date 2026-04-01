@@ -107,15 +107,15 @@
       ],
       "selfChatMode": true,
       "groupPolicy": "allowlist",
-      "groupAllowFrom": [
-        "+972506999740",
-        "+972547876649"
-      ],
       "groups": {
         "120363423327214814@g.us": {
           "requireMention": false
         }
-      }
+      },
+      "groupAllowFrom": [
+        "+972506999740",
+        "+972547876649"
+      ]
     }
   },
   "gateway": {

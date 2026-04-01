@@ -1,10 +1,7 @@
 <!DOCTYPE html>  
 
 <html lang="en">  
-<head>
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="Smart Home">  
+<head>  
     <meta charset="UTF-8">  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <title>Smart Home - Tomer's Dashboard</title>  
@@ -762,12 +759,7 @@
 ```
 
 </head>  
-<body>
-<div id="login-gate" style="display:none;position:fixed;inset:0;background:#0a0a0f;z-index:9999;display:flex;align-items:center;justify-content:center;"><div style="text-align:center;font-family:Inter,sans-serif;"><div style="font-size:2rem;margin-bottom:16px;">🏠</div><div style="color:#fff;font-size:1.2rem;margin-bottom:20px;">Smart Home Dashboard</div><input id="login-pw" type="password" placeholder="Password" style="padding:12px 16px;border-radius:8px;border:1px solid #2a2a3a;background:#14141a;color:#fff;font-size:1rem;width:220px;text-align:center;" onkeydown="if(event.key===\x27Enter\x27)doLogin()"><br><button onclick="doLogin()" style="margin-top:14px;padding:12px 40px;border-radius:8px;border:none;background:#00d4ff;color:#0a0a0f;font-size:1rem;font-weight:600;cursor:pointer;">Enter</button><div id="login-err" style="color:#ff5757;margin-top:10px;font-size:0.85rem;display:none;">Wrong password</div></div></div>
-<script>
-function doLogin(){var p=document.getElementById("login-pw").value;if(p==="noobchim"){document.cookie="dash_auth=1;max-age=31536000;path=/;SameSite=Strict";document.getElementById("login-gate").style.display="none";}else{document.getElementById("login-err").style.display="block";}}
-if(document.cookie.indexOf("dash_auth=1")===-1){document.getElementById("login-gate").style.display="flex";}else{var g=document.getElementById("login-gate");if(g)g.style.display="none";}
-</script>  
+<body>  
     <!-- SVG Icon Definitions -->  
     <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">  
         <defs>  
@@ -815,6 +807,10 @@ if(document.cookie.indexOf("dash_auth=1")===-1){document.getElementById("login-g
     <!-- What is this? -->  
     <div class="info-box info" style="margin: 0 0 16px 0; padding: 14px 16px;">  
         <p style="margin: 0; font-size: 0.9rem;"><strong>📋 This is a planning dashboard</strong> — not a smart home controller. It documents the architecture, tracks project progress, and serves as a reference for building a Home Assistant-based smart home.</p>  
+        <div style="display: flex; gap: 12px; margin-top: 10px; flex-wrap: wrap;">  
+            <a href="https://github.com/tomereli/homeassistant" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.8rem; padding: 4px 10px; background: var(--bg-surface); border-radius: 6px; border: 1px solid var(--border);">📦 Docker Compose Repo</a>  
+            <a href="https://github.com/tomereli/homeassistant-config" target="_blank" style="color: var(--accent); text-decoration: none; font-size: 0.8rem; padding: 4px 10px; background: var(--bg-surface); border-radius: 6px; border: 1px solid var(--border);">⚙️ HA Config Repo</a>  
+        </div>  
     </div>  
       
     <!-- Floor Plan -->  
@@ -2425,7 +2421,7 @@ git_push: ‘/bin/bash -c “cd /config && /usr/bin/git push origin main”’</
             <span class="mini-flow-arrow">→</span>  
             <div class="mini-flow-node" style="border-color: var(--accent);">🦞 OpenClaw</div>  
             <span class="mini-flow-arrow">→</span>  
-            <div class="mini-flow-node">🧠 Gemini 2.5 Flash</div>  
+            <div class="mini-flow-node">🧠 Gemini 2.5 Pro</div>  
         </div>  
         <div class="mini-flow-row">  
             <div class="mini-flow-node" style="border-color: var(--accent);">🦞 OpenClaw</div>  
@@ -2437,35 +2433,52 @@ git_push: ‘/bin/bash -c “cd /config && /usr/bin/git push origin main”’</
         </div>  
     </div>  
   
-    <div class="info-box success">  
-        <h4>✅ Core Running!</h4>  
-        <p>OpenClaw gateway running in Docker on NUC. Telegram bot (@noobchim_bot) responding. Gemini 2.5 Flash connected. Both Tomer and Masha paired. "Home 🏠" group active.</p>  
+    <div class="info-box warning">  
+        <h4>🐛 Group Chat Bug</h4>  
+        <p>Complex messages silently drop in group chat. DMs work 100%. Not model or streaming related. Likely OpenClaw bug — update to latest version next.</p>  
     </div>  
   
     <div class="card">  
         <div class="card-header">✅ What's Working</div>  
         <div class="card-content">  
             <div class="status-item"><span class="status-icon">✅</span><span class="status-text">OpenClaw gateway in Docker<small>On NUC alongside HA</small></span></div>  
-            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Telegram bot responding<small>@noobchim_bot</small></span></div>  
-            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Gemini 2.5 Flash connected<small>Free tier</small></span></div>  
-            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Dashboard via Tailscale HTTPS<small>noobchim-desktop.tail548c12.ts.net</small></span></div>  
+            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Telegram: bot + group chat<small>@noobchim_bot, "Familly's Second Brain"</small></span></div>  
+            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">WhatsApp connected<small>Self-chat, Masha DM (trigger word), Mom (impersonates Tomer)</small></span></div>  
+            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Gemini 2.5 Flash (primary) + Pro (fallback)</span></div>  
+            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Dashboard via Tailscale HTTPS</span></div>  
             <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Persistent session memory</span></div>  
-            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Tomer paired</span></div>  
-            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Masha paired</span></div>  
-            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">"Home 🏠" Telegram group</span></div>  
-            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">SOUL.md personality configured</span></div>  
+            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Tomer + Masha paired (Telegram + WhatsApp)</span></div>  
+            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">SOUL.md configured<small>Per-contact behavior, Hebrew/English</small></span></div>  
+            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">HA skill (web UI + WhatsApp)<small>Lights control works. Sometimes needs /new in WhatsApp. NOT from Telegram</small></span></div>  
+            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Todoist CLI installed<small>todoist-ts-cli, auth done. Config not persistent yet</small></span></div>  
+            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Git tag: v1.0-jarvis</span></div>  
+            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">DM conversations: 100% reliable<small>Complex questions, memory — all work</small></span></div>  
+        </div>  
+    </div>  
+  
+    <div class="card">  
+        <div class="card-header">🐛 Group Chat Bug — Investigation</div>  
+        <div class="card-content">  
+            <div class="status-item"><span class="status-icon">❌</span><span class="status-text">Not model-specific<small>Pro and Flash both affected</small></span></div>  
+            <div class="status-item"><span class="status-icon">❌</span><span class="status-text">Not streaming-specific<small>off and partial both affected</small></span></div>  
+            <div class="status-item"><span class="status-icon">❌</span><span class="status-text">Not rate limiting<small>Billing enabled, 300 RPM</small></span></div>  
+            <div class="status-item"><span class="status-icon">❌</span><span class="status-text">Not SOUL.md issue<small>Debug ACK rule didn't help</small></span></div>  
+            <div class="status-item"><span class="status-icon">⏳</span><span class="status-text">Next: Update to v2026.3.28+</span></div>  
+            <div class="status-item"><span class="status-icon">⏳</span><span class="status-text">Next: Test with Claude API</span></div>  
+            <div class="status-item"><span class="status-icon">⏳</span><span class="status-text">Next: File GitHub bug if persists</span></div>  
         </div>  
     </div>  
   
     <div class="card">  
         <div class="card-header">⏳ Remaining</div>  
         <div class="card-content">  
-            <div class="status-item"><span class="status-icon">⏳</span><span class="status-text">Install Home Assistant skill<small>Create HA long-lived token, install via CLI</small></span></div>  
-            <div class="status-item"><span class="status-icon">⏳</span><span class="status-text">Fix failed skill installs<small>clawhub, gog, goplaces, github</small></span></div>  
+            <div class="status-item"><span class="status-icon">🐛</span><span class="status-text">Fix group chat drops<small>Update OpenClaw, test Claude API, file bug</small></span></div>  
+            <div class="status-item"><span class="status-icon">🐛</span><span class="status-text">Debug HA skill in Telegram<small>Works from web UI, not from Telegram</small></span></div>  
+            <div class="status-item"><span class="status-icon">⏳</span><span class="status-text">Todoist CLI persistence<small>Volume mount for /home/node/.config/todoist-cli/</small></span></div>  
+            <div class="status-item"><span class="status-icon">⏳</span><span class="status-text">Remove debug ACK rule from SOUL.md</span></div>  
             <div class="status-item"><span class="status-icon">⏳</span><span class="status-text">Set up proactive features<small>Morning briefings, reminders via cron</small></span></div>  
-            <div class="status-item"><span class="status-icon">⏳</span><span class="status-text">Future: Google Calendar skill</span></div>  
-            <div class="status-item"><span class="status-icon">⏳</span><span class="status-text">Future: Gmail skill</span></div>  
-            <div class="status-item"><span class="status-icon">💡</span><span class="status-text">Optionally switch to Claude Pro<small>Smarter responses, ~$10/mo</small></span></div>  
+            <div class="status-item"><span class="status-icon">⏳</span><span class="status-text">Increase Google AI spend cap</span></div>  
+            <div class="status-item"><span class="status-icon">⏳</span><span class="status-text">Pair Masha's Telegram for DMs</span></div>  
         </div>  
     </div>  
   
@@ -2494,8 +2507,7 @@ git_push: ‘/bin/bash -c “cd /config && /usr/bin/git push origin main”’</
         <div class="card-header">💰 Costs</div>  
         <div class="card-content">  
             <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Software: Free<small>Open source</small></span></div>  
-            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Gemini 2.5 Flash: Free tier<small>~250 requests/day</small></span></div>  
-            <div class="status-item"><span class="status-icon">💡</span><span class="status-text">Optional: Claude Pro ~$10/mo<small>For smarter responses</small></span></div>  
+            <div class="status-item"><span class="status-icon">✅</span><span class="status-text">Gemini API: $300 free credit<small>90 days, spend cap set</small></span></div>  
         </div>  
     </div>  
   
@@ -2538,6 +2550,9 @@ git_push: ‘/bin/bash -c “cd /config && /usr/bin/git push origin main”’</
             devices: [  
                 { icon: '💡', name: 'Zigbee Spots', project: 'project-lighting' },  
                 { icon: '💡', name: 'Zigbee Regular Lights', project: 'project-lighting' },  
+                { icon: '💡', name: 'LED Strip - Coffee Machine', project: 'project-lighting' },  
+                { icon: '💡', name: 'LED Strip - Hanging Fixture', project: 'project-lighting' },  
+                { icon: '💡', name: 'LED Strip - Countertop (socket)', project: 'project-lighting' },  
                 { icon: '🤖', name: 'Robot Garage (utility)', project: 'project-robot' }  
             ]  
         },  
