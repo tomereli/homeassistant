@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.3.28",
-    "lastTouchedAt": "2026-03-29T23:18:01.402Z"
+    "lastTouchedVersion": "2026.4.5",
+    "lastTouchedAt": "2026-04-06T10:30:26.596Z"
   },
   "env": {
     "HASS_SERVER": "http://127.0.0.1:8123",
@@ -103,7 +103,8 @@
       "dmPolicy": "allowlist",
       "allowFrom": [
         "+972506999740",
-        "+972544422521"
+        "+972544422521",
+        "+972547876649"
       ],
       "selfChatMode": true,
       "groupPolicy": "allowlist",
@@ -164,6 +165,9 @@
       "duckduckgo": {
         "enabled": true,
         "config": {}
+      },
+      "google": {
+        "enabled": true
       }
     }
   }
