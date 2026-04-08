@@ -31,6 +31,7 @@ services:
     volumes:
       - ./openclaw-data:/home/node/.openclaw
       - ./openclaw-workspace:/home/node/openclaw/workspace
+      - ./openclaw-todoist-config:/home/node/.config/todoist-cli
     environment:
       - TZ=Asia/Jerusalem
     init: true
@@ -57,6 +58,7 @@ services:
     volumes:
       - ./openclaw-data:/home/node/.openclaw
       - ./openclaw-workspace:/home/node/openclaw/workspace
+      - ./openclaw-todoist-config:/home/node/.config/todoist-cli
     environment:
       - TZ=Asia/Jerusalem
     profiles:
