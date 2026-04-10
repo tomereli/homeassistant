@@ -102,9 +102,7 @@
       "enabled": true,
       "dmPolicy": "allowlist",
       "allowFrom": [
-        "+972506999740",
-        "+972544422521",
-        "+972547876649"
+        "+972506999740"
       ],
       "selfChatMode": true,
       "groupPolicy": "allowlist",
