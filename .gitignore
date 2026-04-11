@@ -45,3 +45,6 @@ matter-server-data/
 
 # Dashboard auth
 dashboard/.htpasswd
+.env
+openclaw-mcporter-config/
+openclaw-todoist-config/
