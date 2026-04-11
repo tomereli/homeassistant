@@ -33,7 +33,6 @@ config/.ha_run.lock
 config/image/
 
 # OpenClaw (API keys, tokens, agent memory)
-openclaw-data/
 openclaw-workspace/
 
 # Matter server runtime data
@@ -48,3 +47,7 @@ dashboard/.htpasswd
 .env
 openclaw-mcporter-config/
 openclaw-todoist-config/
+
+
+
+openclaw-data/

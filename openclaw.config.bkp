@@ -1,7 +1,7 @@
 {
   "meta": {
     "lastTouchedVersion": "2026.4.5",
-    "lastTouchedAt": "2026-04-06T10:30:26.596Z"
+    "lastTouchedAt": "2026-04-11T10:24:23.885Z"
   },
   "env": {
     "HASS_SERVER": "http://127.0.0.1:8123",
@@ -154,7 +154,17 @@
     },
     "entries": {
       "homeassistant-assist": {
-        "enabled": true
+        "enabled": false
+      },
+      "ha-control": {
+        "enabled": false
+      },
+      "mcp-hass": {
+        "enabled": true,
+        "env": {
+          "HASS_ACCESS_TOKEN": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI1MzUyZTc1NDA4OTU0N2I3ODgyYmUzOTA5YThhYzQ3MiIsImlhdCI6MTc3NTg5MzkwMywiZXhwIjoyMDkxMjUzOTAzfQ.wVkPg-ZG4--ZPOyRDh5Hq_jqZK3LeEJtuLlps68Q_6c",
+          "HASS_BASE_URL": "http://homeassistant:8123"
+        }
       }
     }
   },
